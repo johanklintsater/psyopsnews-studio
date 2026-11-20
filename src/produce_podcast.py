@@ -73,7 +73,7 @@ async def main():
             run("ffmpeg","-y","-loglevel","error","-loop","1","-framerate","12","-i",still,"-i",audio,"-c:v","libx264","-preset","veryfast","-tune","stillimage","-pix_fmt","yuv420p","-c:a","aac","-b:a","160k","-ar","44100","-ac","2","-shortest","-movflags","+faststart",video)
             segments.append(video)
         listing=work/"segments.txt"
-        listing.write_text("".join(f"file '{p}'\\n" for p in segments),encoding="utf-8")
+        listing.write_text("".join(f"file '{p}'\n" for p in segments),encoding="utf-8")
         final=OUT/"psyopsnews_podcast_pilot.mp4"
         run("ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",listing,"-c","copy",final)
         print("Created:",final)
