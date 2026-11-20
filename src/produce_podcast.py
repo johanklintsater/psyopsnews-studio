@@ -1,11 +1,10 @@
 """PSYOPSNEWS panel pilot: three puppets, no fake mouth overlays."""
-import asyncio
 import json
 import subprocess
 import tempfile
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageOps
-import edge_tts
+from elevenlabs_tts import choose_voices, synthesize
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/"output"
@@ -57,16 +56,17 @@ def frame(chars,speaker,text):
     for i,line in enumerate(lines[:3]):
         d.text((44,596+i*36),line,font=font(28),fill="white")
     return img
-async def main():
+def main():
     chars=json.loads((ROOT/"config/characters.json").read_text(encoding="utf-8"))
     dialogue=json.loads((ROOT/"episodes/podcast_pilot.json").read_text(encoding="utf-8"))
+    voices=choose_voices()
     with tempfile.TemporaryDirectory() as td:
         work=Path(td)
         segments=[]
         for i,line in enumerate(dialogue):
             speaker=line["speaker"]
             audio=work/f"{i:03}.mp3"
-            await edge_tts.Communicate(line["text"],chars[speaker]["voice"]).save(str(audio))
+            synthesize(line["text"],voices[speaker],audio)
             still=work/f"{i:03}.png"
             frame(chars,speaker,line["text"]).save(still)
             video=work/f"{i:03}.mp4"
@@ -77,4 +77,4 @@ async def main():
         final=OUT/"psyopsnews_podcast_pilot.mp4"
         run("ffmpeg","-y","-loglevel","error","-f","concat","-safe","0","-i",listing,"-c","copy",final)
         print("Created:",final)
-if __name__=="__main__":asyncio.run(main())
+if __name__=="__main__":main()
