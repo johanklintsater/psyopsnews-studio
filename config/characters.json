@@ -1,0 +1,35 @@
+{
+  "bear": {
+    "name": "Cykelhjälmen",
+    "dialect": "stockholmska",
+    "voice": "sv-SE-MattiasNeural",
+    "image": "assets/bear.png",
+    "mouth": [
+      0.5,
+      0.48
+    ],
+    "style": "rapp, förbannad, ironisk"
+  },
+  "journalist": {
+    "name": "Journalisten",
+    "dialect": "småländska",
+    "voice": "sv-SE-MattiasNeural",
+    "image": "assets/journalist.png",
+    "mouth": [
+      0.5,
+      0.47
+    ],
+    "style": "lugn, torr, eftertänksam"
+  },
+  "rock": {
+    "name": "Rockbruden",
+    "dialect": "bred stockholmska",
+    "voice": "sv-SE-SofieNeural",
+    "image": "assets/rock.png",
+    "mouth": [
+      0.5,
+      0.48
+    ],
+    "style": "hes, snabb, kaxig"
+  }
+}
