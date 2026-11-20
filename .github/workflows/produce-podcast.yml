@@ -1,4 +1,4 @@
-name: Produce Podcast Pilot (3 puppets)
+name: Produce Podcast Pilot (ElevenLabs)
 on:
   workflow_dispatch:
 jobs:
@@ -12,8 +12,13 @@ jobs:
       - name: Install FFmpeg and fonts
         run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
       - name: Install Python dependencies
-        run: python -m pip install edge-tts Pillow
+        run: python -m pip install Pillow
       - name: Render three-puppet podcast
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_BEAR: ${{ secrets.ELEVENLABS_VOICE_BEAR }}
+          ELEVENLABS_VOICE_JOURNALIST: ${{ secrets.ELEVENLABS_VOICE_JOURNALIST }}
+          ELEVENLABS_VOICE_ROCK: ${{ secrets.ELEVENLABS_VOICE_ROCK }}
         run: python src/produce_podcast.py
       - name: Upload podcast MP4
         uses: actions/upload-artifact@v4
