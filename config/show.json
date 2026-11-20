@@ -1,0 +1,19 @@
+{
+  "channel": "PSYOPSNEWS 24/7",
+  "tagline": "THE WORLD IS FUCKED. WE'RE STILL BROADCASTING.",
+  "format": "Adult satirical puppet news",
+  "language": "sv-SE",
+  "host": "Björnen",
+  "segments": [
+    "Björnen har ordet",
+    "The Idiot Panel",
+    "The Night Shift",
+    "Dagens haveri"
+  ],
+  "editorial": [
+    "Clearly label satire and fictional dialogue",
+    "Attribute real news claims to reliable sources",
+    "Never present invented quotes as real"
+  ],
+  "pilot": "EP01 – Mänskligheten har sagt upp sig"
+}
