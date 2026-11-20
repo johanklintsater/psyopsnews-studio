@@ -1,0 +1,46 @@
+{
+  "bear": {
+    "title": "Björnen har ordet",
+    "host": "bear",
+    "target_minutes": 6,
+    "focus": [
+      "samhälle",
+      "byråkrati",
+      "AI"
+    ]
+  },
+  "journalist": {
+    "title": "Journalisten granskar",
+    "host": "journalist",
+    "target_minutes": 10,
+    "focus": [
+      "utredningar",
+      "myndigheter",
+      "ekonomi"
+    ]
+  },
+  "rock": {
+    "title": "Rockbrudens Backstage",
+    "host": "rock",
+    "target_minutes": 12,
+    "focus": [
+      "musik",
+      "rock",
+      "metal"
+    ]
+  },
+  "panel": {
+    "title": "Tre idioter och en mikrofon",
+    "hosts": [
+      "bear",
+      "journalist",
+      "rock"
+    ],
+    "target_minutes": 25,
+    "focus": [
+      "veckans ämnen",
+      "bråk",
+      "absurd humor"
+    ]
+  }
+}
