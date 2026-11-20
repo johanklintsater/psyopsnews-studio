@@ -1,0 +1,37 @@
+name: Produce Episode
+on:
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Prepare assets
+        run: |
+          mkdir -p output
+          if [ ! -f assets/bear.png ]; then
+            echo "No assets/bear.png found. Creating placeholder card."
+            ffmpeg -y -f lavfi -i "color=c=0x16131e:s=1280x720:d=1" -frames:v 1 output/placeholder.png
+            IMAGE=output/placeholder.png
+          else
+            IMAGE=assets/bear.png
+          fi
+          if [ ! -f assets/ep01.wav ]; then
+            echo "No assets/ep01.wav found. Creating 10s silent test audio."
+            ffmpeg -y -f lavfi -i "anullsrc=r=44100:cl=stereo" -t 10 output/placeholder.wav
+            AUDIO=output/placeholder.wav
+          else
+            AUDIO=assets/ep01.wav
+          fi
+          python3 src/make_episode.py --image "$IMAGE" --audio "$AUDIO" --out output/ep01.mp4
+      - name: Upload episode
+        uses: actions/upload-artifact@v4
+        with:
+          name: psyopsnews-ep01
+          path: output/ep01.mp4
+          retention-days: 7
