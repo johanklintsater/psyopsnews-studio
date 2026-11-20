@@ -1,0 +1,16 @@
+{
+  "feeds": [
+    {
+      "name": "SVT Nyheter",
+      "url": "https://www.svt.se/nyheter/rss.xml"
+    },
+    {
+      "name": "BBC World",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml"
+    },
+    {
+      "name": "BBC Entertainment",
+      "url": "https://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
+    }
+  ]
+}
