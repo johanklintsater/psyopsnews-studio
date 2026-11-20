@@ -1,0 +1,23 @@
+name: Produce Episode v0.2 (voices and puppets)
+on:
+  workflow_dispatch:
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg and fonts
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+      - name: Install Python packages
+        run: python -m pip install --upgrade edge-tts Pillow
+      - name: Produce episode
+        run: python src/produce_v02.py
+      - name: Upload MP4
+        uses: actions/upload-artifact@v4
+        with:
+          name: psyopsnews-ep01-v02
+          path: output/psyopsnews_ep01_v02.mp4
+          retention-days: 7
